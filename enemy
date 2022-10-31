@@ -1,0 +1,192 @@
+namespace SpriteKind { 
+
+export const regularProjectile = SpriteKind.create() 
+
+export const bossBounce = SpriteKind.create() 
+
+export const lvl1BossProjectile = SpriteKind.create() 
+export const regularEnemy = SpriteKind.create() 
+
+Export const flyingEnemy = SpriteKind.create() 
+
+} 
+
+ 
+
+Sprites.onOverlap(SpriteKind.Player, SpriteKind.regularEnemy, function (sprite, otherSprite) { 
+
+Info.changeLifeBy(-1) 
+
+OtherSprite.destroy() 
+
+}) 
+
+ 
+
+Sprites.onOverlap(SpriteKind.Player, SpriteKind.flyingEnemy, function (sprite, otherSprite) { 
+
+Info.changeLifeBy(-1) 
+
+}) 
+
+ 
+
+ 
+
+ 
+
+sprites.onOverlap(SpriteKind.regularProjectile, SpriteKind.Player, function (sprite, otherSprite) { 
+
+info.changeLifeBy(-1) 
+
+sprite.destroy() 
+
+}) 
+
+ 
+
+ 
+
+sprites.onOverlap(SpriteKind.Player, SpriteKind.bossBounce, function (sprite, otherSprite) { 
+
+info.changeScoreBy(-1) 
+
+if (mySprite.x > mySprite2.x) { 
+
+mySprite.x += 10 
+
+mySprite.y += -10 
+
+canMove = false 
+
+mySprite.ax = 70 
+
+timer.after(800, function () { 
+
+mySprite.ax = 0 
+
+canMove = true 
+
+}) 
+
+} else { 
+
+mySprite.x += -10 
+
+mySprite.y += -10 
+
+canMove = false 
+
+mySprite.ax = -70 
+
+timer.after(800, function () { 
+
+mySprite.ax = 0 
+
+canMove = true 
+
+}) 
+
+} 
+
+}) 
+
+ 
+
+ 
+
+ 
+
+sprites.onOverlap(SpriteKind.Player, SpriteKind.bossBounce, function (sprite, otherSprite) { 
+
+info.changeScoreBy(-1) 
+
+if (mySprite.x > mySprite2.x) { 
+
+mySprite.x += 10 
+
+mySprite.y += -10 
+
+canMove = false 
+
+mySprite.ax = 70 
+
+timer.after(800, function () { 
+
+mySprite.ax = 0 
+
+canMove = true 
+
+}) 
+
+} else { 
+
+mySprite.x += -10 
+
+mySprite.y += -10 
+
+canMove = false 
+
+mySprite.ax = -70 
+
+timer.after(800, function () { 
+
+mySprite.ax = 0 
+
+canMove = true 
+
+}) 
+
+} 
+
+}) 
+
+ 
+
+ 
+
+sprites.onOverlap(SpriteKind.Player, SpriteKind.lvl1BossProjectile, function (sprite, otherSprite) { 
+
+info.changeScoreBy(-1) 
+
+if (mySprite.x > otherSprite.x) { 
+
+mySprite.x += 10 
+
+mySprite.y += -10 
+
+canMove = false 
+
+mySprite.ax = 70 
+
+timer.after(800, function () { 
+
+mySprite.ax = 0 
+
+canMove = true 
+
+}) 
+
+} else { 
+
+mySprite.x += -10 
+
+mySprite.y += -10 
+
+canMove = false 
+
+mySprite.ax = -70 
+
+timer.after(800, function () { 
+
+mySprite.ax = 0 
+
+canMove = true 
+
+}) 
+
+} 
+
+}) 
+
+ 
