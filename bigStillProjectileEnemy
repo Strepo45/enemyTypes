@@ -64,6 +64,7 @@ forever(function () {
         . . . 2 2 2 2 2 2 2 2 2 2 . . . 
         `, stillProjectileEnemy, -60, 0)
     BigProjectile.follow(mySprite, 55)
+    BigProjectile.setKind(SpriteKind.lvl1BossProjectile)
     let BigProjectile2 = sprites.createProjectileFromSprite(img`
         . . . . . . 2 2 2 2 . . . . . . 
         . . . . 2 2 3 3 3 3 2 e . . . . 
@@ -83,6 +84,7 @@ forever(function () {
         . . . e e e e e e e e e e . . . 
         `, stillProjectileEnemy, -40, 0)
     BigProjectile2.follow(mySprite, 45)
+     BigProjectile2.setKind(SpriteKind.lvl1BossProjectile)
     pause(6000)
     sprites.destroyAllSpritesOfKind(SpriteKind.lvl1BossProjectile)
     }
