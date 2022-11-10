@@ -5,7 +5,7 @@ let stillPresent = false
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, location) {
     for (let value of tiles.getTilesByType(assets.tile`myTile5`)) {
         for (let value2 of tiles.getTilesByType(assets.tile`myTile6`)) {
-            stillProjectileEnemy = sprites.create(img`
+            let stillProjectileEnemy = sprites.create(img`
                 ........................
                 ........................
                 ........................
@@ -45,7 +45,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, l
 forever(function () {
   if (stillPresent = true)
   {
-    projectile = sprites.createProjectileFromSprite(img`
+     let BigProjectile = sprites.createProjectileFromSprite(img`
         . . . . . . 2 2 2 2 . . . . . . 
         . . . . 2 2 3 3 3 3 2 e . . . . 
         . . . 2 3 d 1 1 d d 3 2 e . . . 
@@ -62,9 +62,9 @@ forever(function () {
         . e 3 1 1 d d 1 1 1 b b 2 2 2 . 
         . . e 3 3 3 3 3 3 b 2 2 2 2 . . 
         . . . 2 2 2 2 2 2 2 2 2 2 . . . 
-        `, mySprite2, -60, 0)
-    projectile.follow(mySprite, 55)
-    projectile2 = sprites.createProjectileFromSprite(img`
+        `, stillProjectileEnemy, -60, 0)
+    BigProjectile.follow(mySprite, 55)
+    let BigProjectile2 = sprites.createProjectileFromSprite(img`
         . . . . . . 2 2 2 2 . . . . . . 
         . . . . 2 2 3 3 3 3 2 e . . . . 
         . . . 2 3 d 1 1 d d 3 2 e . . . 
@@ -81,8 +81,8 @@ forever(function () {
         . e 3 1 1 d d 1 1 1 b b e e e . 
         . . e 3 3 3 3 3 3 b e e e e . . 
         . . . e e e e e e e e e e . . . 
-        `, mySprite2, -40, 0)
-    projectile2.follow(mySprite, 45)
+        `, stillProjectileEnemy, -40, 0)
+    BigProjectile2.follow(mySprite, 45)
     pause(6000)
     sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
     }
