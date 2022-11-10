@@ -64,6 +64,7 @@ forever(function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, runProjectileEnemy, -50, 0)
+            runProjectileEnemy.setKind(SpriteKind.regularProjectile)
     } else {
         projectile = sprites.createProjectileFromSprite(img`
             . . . . . . . . . . . . . . . . 
@@ -83,6 +84,7 @@ forever(function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, runProjectileEnemy, 50, 0)
+            runProjectileEnemy.setKind(SpriteKind.regularProjectile)
     }
     pause(3500)
 })
