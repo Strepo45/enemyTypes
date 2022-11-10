@@ -1,3 +1,9 @@
+// place in OnStart //
+let runningPresent = false
+
+
+
+
 //place wherever
 
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, location) {
@@ -33,6 +39,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, l
             runProjectileEnemy.ay = 3000
             tiles.placeOnTile(runProjectileEnemy, value2)
             tiles.setTileAt(value2, assets.tile`transparency16`)
+            runningPresent = true
         }
         tiles.setTileAt(value, assets.tile`transparency16`)
     }
@@ -45,6 +52,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, l
 //place wherever// 
 //mySprite.x is supposed to represent player's x, change if player's sprite utilizes different name//
 forever(function () {
+ if (runningPresent == true)
+ {
     if (mySprite.x < runProjectileEnemy.x) {
         projectile = sprites.createProjectileFromSprite(img`
             . . . . . . . . . . . . . . . . 
@@ -86,6 +95,8 @@ forever(function () {
             `, runProjectileEnemy, 50, 0)
             runProjectileEnemy.setKind(SpriteKind.regularProjectile)
     }
+    
     pause(3500)
+    }
 })
 
