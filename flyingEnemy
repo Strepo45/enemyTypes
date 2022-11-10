@@ -1,7 +1,8 @@
-
+//put in on start 
 let flyingPresent = false
 flyingPresent = false
 
+let isSwooping = false
 
 
 //MAIN ENEMY SPAWN CODE//
