@@ -1,3 +1,5 @@
+//place wherever
+
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, location) {
     for (let value of tiles.getTilesByType(assets.tile`myTile5`)) {
         for (let value2 of tiles.getTilesByType(assets.tile`myTile6`)) {
@@ -27,7 +29,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, l
                 ........................
                 ........................
                 `, SpriteKind.regularEnemy)
-            runProjectileEnemy.follow(mySprite4, 45)
+            runProjectileEnemy.follow(mySprite, 45)
             runProjectileEnemy.ay = 3000
             tiles.placeOnTile(runProjectileEnemy, value2)
             tiles.setTileAt(value2, assets.tile`transparency16`)
@@ -39,3 +41,49 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, l
 
 
 //ADD PROJECTILE FIRING//
+
+//place wherever// 
+//mySprite.x is supposed to represent player's x, change if player's sprite utilizes different name//
+forever(function () {
+    if (mySprite.x < runProjectileEnemy.x) {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . 3 3 3 3 3 3 3 . . . . 
+            . . . . 3 3 3 3 3 3 3 3 3 . . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . . 3 3 3 3 3 3 3 3 3 . . . 
+            . . . . . 3 3 3 3 3 3 3 . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, runProjectileEnemy, -50, 0)
+    } else {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . 3 3 3 3 3 3 3 . . . . 
+            . . . . 3 3 3 3 3 3 3 3 3 . . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . 3 3 3 3 3 3 3 3 3 3 3 . . 
+            . . . . 3 3 3 3 3 3 3 3 3 . . . 
+            . . . . . 3 3 3 3 3 3 3 . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, runProjectileEnemy, 50, 0)
+    }
+    pause(3500)
+})
+
