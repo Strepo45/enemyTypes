@@ -84,6 +84,6 @@ forever(function () {
         `, stillProjectileEnemy, -40, 0)
     BigProjectile2.follow(mySprite, 45)
     pause(6000)
-    sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
+    sprites.destroyAllSpritesOfKind(SpriteKind.lvl1BossProjectile)
     }
 })
