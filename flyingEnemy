@@ -44,3 +44,42 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, l
         tiles.setTileAt(value, assets.tile`transparency16`)
     }
 })
+
+//place wherever-forever for making the enemy swoop every 5 seconds//
+forever(function () {
+    pause(5000)
+    isSwooping = true
+})
+
+
+
+
+//swoop fire, in forever loop//
+//for false, enemy will hover over player//
+forever(function () {
+    if (isSwooping == true) {
+        flyingEnemy.vy = 70
+        pause(750)
+        if (mySprite2.isHittingTile(CollisionDirection.Bottom)) {
+            isSwooping = false
+        }
+    }
+    if (isSwooping == false) {
+        while (flyingEnemy.y > mySprite.y - 30) {
+            flyingEnemy.y += -2
+            pause(10)
+        }
+        while (flyingEnemy.y < mySprite.y - 30) {
+            flyingEnemy.y += 2
+            pause(10)
+        }
+        while (flyingEnemy.x < mySprite.x - 5) {
+            flyingEnemy.x += 2
+            pause(10)
+        }
+        while (flyingEnemy.x > mySprite.x - 5) {
+            mySprite2.x += -2
+            pause(10)
+        }
+    }
+})
