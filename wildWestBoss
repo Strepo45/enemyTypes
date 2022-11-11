@@ -1,0 +1,127 @@
+//absolutely super MEGA important to put this in the onStart!!!!//
+let canBossAttack = true
+
+
+
+
+//all of his attack functions//
+//repeating functions is okay, but he should never constantly repeat one-should be a random selection//
+
+//jump forwards- jump at the player//
+function jumpForwardsAttack () {
+    if (mySprite.x > mySprite2.x) {
+        mySprite2.setVelocity(50, -90)
+    } else {
+        mySprite2.setVelocity(-50, -90)
+    }
+    if (mySprite2.isHittingTile(CollisionDirection.Bottom)) {
+        timer.after(1000, function () {
+            mySprite2.follow(mySprite, 5)
+            canBossAttack = true
+        })
+    }
+}
+
+//jump back-jump away from player//
+function jumpBackAttack () {
+    if (mySprite.x < mySprite2.x) {
+        mySprite2.setVelocity(50, -90)
+    } else {
+        mySprite2.setVelocity(-50, -90)
+    }
+    if (mySprite.isHittingTile(CollisionDirection.Bottom)) {
+        timer.after(1000, function () {
+            mySprite2.follow(mySprite, 5)
+            canBossAttack = true
+        })
+    }
+}
+
+
+//teleport-teleports to random tile 'myTile'//
+function teleport () {
+    tiles.placeOnRandomTile(mySprite2, assets.tile`myTile`)
+    timer.after(1000, function () {
+        mySprite2.setVelocity(0, 0)
+        canBossAttack = true
+    })
+}
+
+//horizontal attack-slides away from enemy//
+function horizontalAttack () {
+    if (mySprite.x < mySprite2.x) {
+        mySprite2.setVelocity(50, 200 + difficulty)
+    } else {
+        mySprite2.setVelocity(-50, 200 - difficulty)
+    }
+    timer.after(1000, function () {
+        mySprite2.follow(mySprite, 5)
+        canBossAttack = true
+    })
+}
+
+
+
+//VITAL forever function-PROJECTILE forever//
+forever(function () {
+    pause(750)
+    if (mySprite.x > mySprite2.x) {
+        let projectile = sprites.createProjectileFromSprite(img`
+            . . 2 2 b b b b b . . . . . . . 
+            . 2 b 4 4 4 4 4 4 b . . . . . . 
+            2 2 4 4 4 4 d d 4 4 b . . . . . 
+            2 b 4 4 4 4 4 4 d 4 b . . . . . 
+            2 b 4 4 4 4 4 4 4 d 4 b . . . . 
+            2 b 4 4 4 4 4 4 4 4 4 b . . . . 
+            2 b 4 4 4 4 4 4 4 4 4 e . . . . 
+            2 2 b 4 4 4 4 4 4 4 b e . . . . 
+            . 2 b b b 4 4 4 b b b e . . . . 
+            . . e b b b b b b b e e . . . . 
+            . . . e e b 4 4 b e e e b . . . 
+            . . . . . e e e e e e b d b b . 
+            . . . . . . . . . . . b 1 1 1 b 
+            . . . . . . . . . . . c 1 d d b 
+            . . . . . . . . . . . c 1 b c . 
+            . . . . . . . . . . . . c c . . 
+            `, mySprite2, randint(25, 35 + difficulty), mySprite.vy)
+    } else {
+        let projectile = sprites.createProjectileFromSprite(img`
+            . . 2 2 b b b b b . . . . . . . 
+            . 2 b 4 4 4 4 4 4 b . . . . . . 
+            2 2 4 4 4 4 d d 4 4 b . . . . . 
+            2 b 4 4 4 4 4 4 d 4 b . . . . . 
+            2 b 4 4 4 4 4 4 4 d 4 b . . . . 
+            2 b 4 4 4 4 4 4 4 4 4 b . . . . 
+            2 b 4 4 4 4 4 4 4 4 4 e . . . . 
+            2 2 b 4 4 4 4 4 4 4 b e . . . . 
+            . 2 b b b 4 4 4 b b b e . . . . 
+            . . e b b b b b b b e e . . . . 
+            . . . e e b 4 4 b e e e b . . . 
+            . . . . . e e e e e e b d b b . 
+            . . . . . . . . . . . b 1 1 1 b 
+            . . . . . . . . . . . c 1 d d b 
+            . . . . . . . . . . . c 1 b c . 
+            . . . . . . . . . . . . c c . . 
+            `, mySprite2, randint(-25, -35 - difficulty), mySprite.vy)
+    }
+})
+
+!!!!!! IMPORTANT FOREVER FUNCTION !!!!!
+//picks a random attack//
+forever(function () {
+    if (canBossAttack == true) {
+        let bossAttack = randint(0, 3)
+        timer.after(1500, function () {
+            if (bossAttack == 0) {
+                jumpBackAttack()
+            } else if (bossAttack == 1) {
+                horizontalAttack()
+            } else if (bossAttack == 2) {
+                teleport()
+            } else {
+                jumpForwardsAttack()
+            }
+        })
+        canBossAttack = false
+    }
+})
