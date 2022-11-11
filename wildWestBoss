@@ -1,3 +1,11 @@
+//please note the boss sprite is NOT created in this!! will have to create yourself, copy the tilemap spawn system all the enemies use//
+//boss sprite name-wildWestBoss//
+//player sprite name-mySprite//
+
+
+
+
+
 //absolutely super MEGA important to put this in the onStart!!!!//
 let canBossAttack = true
 
@@ -9,14 +17,14 @@ let canBossAttack = true
 
 //jump forwards- jump at the player//
 function jumpForwardsAttack () {
-    if (mySprite.x > mySprite2.x) {
-        mySprite2.setVelocity(50, -90)
+    if (mySprite.x > wildWestBoss.x) {
+        wildWestBoss.setVelocity(50, -90)
     } else {
-        mySprite2.setVelocity(-50, -90)
+        wildWestBoss.setVelocity(-50, -90)
     }
-    if (mySprite2.isHittingTile(CollisionDirection.Bottom)) {
+    if (wildWestBoss.isHittingTile(CollisionDirection.Bottom)) {
         timer.after(1000, function () {
-            mySprite2.follow(mySprite, 5)
+            wildWestBoss.follow(mySprite, 5)
             canBossAttack = true
         })
     }
@@ -24,14 +32,14 @@ function jumpForwardsAttack () {
 
 //jump back-jump away from player//
 function jumpBackAttack () {
-    if (mySprite.x < mySprite2.x) {
-        mySprite2.setVelocity(50, -90)
+    if (mySprite.x < wildWestBoss.x) {
+        wildWestBoss.setVelocity(50, -90)
     } else {
-        mySprite2.setVelocity(-50, -90)
+        wildWestBoss.setVelocity(-50, -90)
     }
     if (mySprite.isHittingTile(CollisionDirection.Bottom)) {
         timer.after(1000, function () {
-            mySprite2.follow(mySprite, 5)
+            wildWestBoss.follow(mySprite, 5)
             canBossAttack = true
         })
     }
@@ -42,20 +50,20 @@ function jumpBackAttack () {
 function teleport () {
     tiles.placeOnRandomTile(mySprite2, assets.tile`myTile`)
     timer.after(1000, function () {
-        mySprite2.setVelocity(0, 0)
+        wildWestBoss.setVelocity(0, 0)
         canBossAttack = true
     })
 }
 
 //horizontal attack-slides away from enemy//
 function horizontalAttack () {
-    if (mySprite.x < mySprite2.x) {
-        mySprite2.setVelocity(50, 200 + difficulty)
+    if (mySprite.x < wildWestBoss.x) {
+        wildWestBoss.setVelocity(50, 200 + difficulty)
     } else {
-        mySprite2.setVelocity(-50, 200 - difficulty)
+        wildWestBoss.setVelocity(-50, 200 - difficulty)
     }
     timer.after(1000, function () {
-        mySprite2.follow(mySprite, 5)
+        wildWestBoss.follow(mySprite, 5)
         canBossAttack = true
     })
 }
@@ -65,8 +73,8 @@ function horizontalAttack () {
 //VITAL forever function-PROJECTILE forever//
 forever(function () {
     pause(750)
-    if (mySprite.x > mySprite2.x) {
-        let projectile = sprites.createProjectileFromSprite(img`
+    if (mySprite.x > wildWestBoss.x) {
+        let projectileWild = sprites.createProjectileFromSprite(img`
             . . 2 2 b b b b b . . . . . . . 
             . 2 b 4 4 4 4 4 4 b . . . . . . 
             2 2 4 4 4 4 d d 4 4 b . . . . . 
@@ -83,9 +91,9 @@ forever(function () {
             . . . . . . . . . . . c 1 d d b 
             . . . . . . . . . . . c 1 b c . 
             . . . . . . . . . . . . c c . . 
-            `, mySprite2, randint(25, 35 + difficulty), mySprite.vy)
+            `, wildWestBoss, randint(25, 35 + difficulty), mySprite.vy)
     } else {
-        let projectile = sprites.createProjectileFromSprite(img`
+        let projectileWild = sprites.createProjectileFromSprite(img`
             . . 2 2 b b b b b . . . . . . . 
             . 2 b 4 4 4 4 4 4 b . . . . . . 
             2 2 4 4 4 4 d d 4 4 b . . . . . 
@@ -102,12 +110,13 @@ forever(function () {
             . . . . . . . . . . . c 1 d d b 
             . . . . . . . . . . . c 1 b c . 
             . . . . . . . . . . . . c c . . 
-            `, mySprite2, randint(-25, -35 - difficulty), mySprite.vy)
+            `, wildWestBoss, randint(-25, -35 - difficulty), mySprite.vy)
     }
 })
 
 !!!!!! IMPORTANT FOREVER FUNCTION !!!!!
 //picks a random attack//
+
 forever(function () {
     if (canBossAttack == true) {
         let bossAttack = randint(0, 3)
